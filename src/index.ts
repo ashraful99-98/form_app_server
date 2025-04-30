@@ -36,7 +36,8 @@ mongoose.connect(dbUrl)
 
 // Middleware
 app.use(cors({
-  origin: process.env.ORIGIN || 'https://forms-app-three.vercel.app',
+  // origin: process.env.ORIGIN || 'https://forms-app-three.vercel.app',
+  origin: process.env.ORIGIN || 'http://localhost:3000',
   credentials: true,
 }));
 app.use(express.json());

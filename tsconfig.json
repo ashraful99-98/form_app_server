@@ -1,25 +1,25 @@
-// {
-//   "compilerOptions": {
-//     "target": "es6",
-//     "module": "commonjs",
-//     "rootDir": "./src",
-//     "outDir": "./dist",
-//     "esModuleInterop": true,
-//     "strict": true
-    
-//   },
-//   "types": ["node", "express"]
-// }
-
 {
   "compilerOptions": {
-    "target": "ES2020",
+    "target": "es6",
     "module": "commonjs",
-    "outDir": "dist",
-    "rootDir": "src",
-    "strict": true,
+    "rootDir": "./src",
+    "outDir": "./dist",
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "strict": true
+    
   },
-  "include": ["src"]
+  "types": ["node", "express"]
 }
+
+// {
+//   "compilerOptions": {
+//     "target": "ES2020",
+//     "module": "commonjs",
+//     "outDir": "dist",
+//     "rootDir": "src",
+//     "strict": true,
+//     "esModuleInterop": true,
+//     "skipLibCheck": true
+//   },
+//   "include": ["src"]
+// }
