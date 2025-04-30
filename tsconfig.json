@@ -18,7 +18,8 @@
     "rootDir": "./src",
     "outDir": "./dist",
     "esModuleInterop": true,
-    "strict": true
+    "strict": true,
+    "skipLibCheck": true  // <- optional to suppress 3rd-party type errors
   },
   "include": ["src"],
   "types": ["node", "express"]
