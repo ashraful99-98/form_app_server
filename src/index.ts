@@ -19,7 +19,7 @@ dotenv.config();
 
 const app: Application = express();
 // const PORT: number = Number(process.env.PORT) || 8000;
-const PORT: number = Number(process.env.PORT) || 8000;
+const PORT: number = Number(process.env.PORT);
 
 // MongoDB connection
 // const dbUrl = "mongodb+srv://formsAppServer:05jx80NNrcTScUrJ@forms-app.nwxnlgi.mongodb.net/?retryWrites=true&w=majority&appName=forms-app";
@@ -37,7 +37,7 @@ mongoose.connect(dbUrl)
 // Middleware
 app.use(cors({
   // origin: process.env.ORIGIN || 'https://forms-app-three.vercel.app',
-  origin: process.env.ORIGIN || 'http://localhost:3000',
+  origin: process.env.ORIGIN || 'https://forms-app47-gamma.vercel.app',
   credentials: true,
 }));
 app.use(express.json());
