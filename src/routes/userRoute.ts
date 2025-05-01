@@ -11,7 +11,8 @@ import {
   deleteUsers,
   updateUserRole
 } from '../controllers/userController';
-import authMiddleware, { authorizeRoles } from '../middleware/authMiddleware';
+import authMiddleware from '../middleware/authMiddleware';
+
 
 
 const router = express.Router();
@@ -25,7 +26,7 @@ router.get('/', getAllUsers);
 //   getAllUsers                   
 // );
 
-router.get('/me', getCurrentUser);
+router.get('/me',authMiddleware, getCurrentUser);
 
 router.get('/:id', getUserById);
 
