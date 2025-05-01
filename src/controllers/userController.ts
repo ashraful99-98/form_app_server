@@ -29,9 +29,11 @@ export const getCurrentUser = async (req: Request, res: Response, next: NextFunc
   }
 
   try {
-    const decoded = jwt.verify(token, JWT_SECRET) as { id: string };
+    // const decoded = jwt.verify(token, JWT_SECRET) as { id: string };
+    const decoded = jwt.verify(token, JWT_SECRET) as { _id: string };
 
-    const user = await User.findById(decoded.id);
+    // const user = await User.findById(decoded.id);
+    const user = await User.findById(decoded._id);
 
     if (!user) {
       res.status(404).json({ message: 'User not found' });
