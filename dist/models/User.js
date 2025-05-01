@@ -54,7 +54,7 @@ const UserSchema = new mongoose_1.Schema({
     password: { type: String, required: true },
 }, {
     timestamps: true,
-    versionKey: undefined,
+    // versionKey: undefined,
 });
 UserSchema.plugin(mongoose_paginate_v2_1.default);
 const User = mongoose_1.default.model('User', UserSchema, 'Users');

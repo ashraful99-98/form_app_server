@@ -30,7 +30,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 // const PORT: number = Number(process.env.PORT) || 8000;
-const PORT = Number(process.env.PORT) || 8000;
+const PORT = Number(process.env.PORT);
 // MongoDB connection
 // const dbUrl = "mongodb+srv://formsAppServer:05jx80NNrcTScUrJ@forms-app.nwxnlgi.mongodb.net/?retryWrites=true&w=majority&appName=forms-app";
 const dbUrl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@forms-app.nwxnlgi.mongodb.net/?retryWrites=true&w=majority&appName=forms-app`;
@@ -42,9 +42,17 @@ mongoose_1.default.connect(dbUrl)
     setTimeout(() => mongoose_1.default.connect(dbUrl), 5000);
 });
 // Middleware
+// const allowedOrigins = [
+//   "https://forms-app47-gamma.vercel.app", // production
+//   "http://localhost:3000",                // development
+// ];
+// app.use(cors({
+//   origin: allowedOrigins,
+//   credentials: true,
+// }));
 app.use((0, cors_1.default)({
-    // origin: process.env.ORIGIN || 'https://forms-app-three.vercel.app',
-    origin: process.env.ORIGIN || 'http://localhost:3000',
+    // origin: process.env.ORIGIN || 'http://localhost:3000',
+    origin: process.env.ORIGIN || 'https://forms-app47-gamma.vercel.app',
     credentials: true,
 }));
 app.use(express_1.default.json());
