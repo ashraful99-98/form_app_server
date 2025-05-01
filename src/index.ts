@@ -35,8 +35,20 @@ mongoose.connect(dbUrl)
   });
 
 // Middleware
+
+// const allowedOrigins = [
+//   "https://forms-app47-gamma.vercel.app", // production
+//   "http://localhost:3000",                // development
+// ];
+
+// app.use(cors({
+//   origin: allowedOrigins,
+//   credentials: true,
+// }));
+
+
 app.use(cors({
-  // origin: process.env.ORIGIN || 'https://forms-app-three.vercel.app',
+  // origin: process.env.ORIGIN || 'http://localhost:3000',
   origin: process.env.ORIGIN || 'https://forms-app47-gamma.vercel.app',
   credentials: true,
 }));
