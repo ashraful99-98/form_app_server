@@ -10,8 +10,6 @@ const JWT_SECRET = process.env.JWT_SECRET || "secret";
 // const JWT_SECRET = process.env.JWT_SECRET as string; 
 
 
-
-
 // Register Controller
 export const register = async (
   req: Request,
@@ -43,7 +41,6 @@ export const register = async (
   }
 };
 
-
 // Register Admin Controller
 
 export const registerAdmin = async (
@@ -66,7 +63,7 @@ export const registerAdmin = async (
       name,
       email,
       password: hashedPassword,
-      role: "admin", // ✅ Here we are setting role to "admin"
+      role: "admin", 
     });
 
     await user.save();
@@ -93,7 +90,7 @@ export const login = async (
       return;
     }
 
-    const user: IUser | null = await User.findOne({ email }).select('+password');
+    const user = await User.findOne({ email }).select('+password');
 
     if (!user) {
       res.status(401).json({ message: "Unauthorized: User not found" });

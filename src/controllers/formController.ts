@@ -160,6 +160,7 @@ export const getAllFormsOfUser = async (
       return;
     }
 
+    // const forms = await FormModel.find({ _id: { $in: user.createdForms } });
     const forms = await FormModel.find({ _id: { $in: user.createdForms } });
 
     res.status(200).json(forms);
