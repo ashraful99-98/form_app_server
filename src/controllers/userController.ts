@@ -21,19 +21,17 @@ export const getAllUsers = async (req: Request, res: Response, next: NextFunctio
 };
 
 // Get current authenticated user via token
-// export const getCurrentUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-//   const token = req.cookies.token;
-
-//   if (!token) {
-//     res.status(401).json({ message: 'Not authenticated' });
-//     return;
-//   }
-
+// new code 
+// export const getCurrentUser = async (req: CustomRequest, res: Response): Promise<void> => {
 //   try {
-//     const decoded = jwt.verify(token, JWT_SECRET) as { id: string };
+//     // const userId = req.user?._id;
+//     const userId = req.user?.id;
+//     if (!userId) {
+//       res.status(401).json({ message: 'User not authenticated' });
+//       return;
+//     }
 
-//     const user = await User.findById(decoded.id);
-
+//     const user = await User.findById(userId);
 //     if (!user) {
 //       res.status(404).json({ message: 'User not found' });
 //       return;
@@ -45,25 +43,33 @@ export const getAllUsers = async (req: Request, res: Response, next: NextFunctio
 //   }
 // };
 
-// new code 
+
 export const getCurrentUser = async (req: CustomRequest, res: Response): Promise<void> => {
   try {
-    // const userId = req.user?._id;
-    const userId = req.user?.id;
+    const userId = req.user?.id; // from your auth middleware
     if (!userId) {
-      res.status(401).json({ message: 'User not authenticated' });
+      res.status(401).json({ message: "User not authenticated" });
       return;
     }
 
-    const user = await User.findById(userId);
+    const user = await User.findById(userId).select("-password");
     if (!user) {
-      res.status(404).json({ message: 'User not found' });
+      res.status(404).json({ message: "User not found" });
       return;
     }
 
-    res.status(200).json({ user });
+    res.status(200).json({
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        // lastSeen: user.lastSeen,
+      },
+    });
   } catch (error) {
-    res.status(401).json({ message: 'Invalid or expired token' });
+    console.error("Error in getCurrentUser:", error);
+    res.status(500).json({ message: "Server error", error });
   }
 };
 
